@@ -159,11 +159,50 @@ public class PalindromeCheckerApp {
     }
 
     // ==========================================
-    // UC5: Stack-Based Palindrome Checker
-    // ==========================================
+// UC5: Stack-Based Palindrome Checker
+// ==========================================
+    /**
+     * Validates palindrome using a Stack (LIFO).
+     * Characters are pushed onto the stack, then popped
+     * in reverse order and compared with the original.
+     *
+     * Key Concepts: Stack, LIFO, push(), pop(),
+     * reversal logic
+     */
     public static void checkUsingStack() {
-        // TODO: UC5 logic here
+
+        System.out.println("\n==========================================");
+        System.out.println("  UC5: Stack-Based Palindrome Check");
+        System.out.println("==========================================");
+
+        // Define the input string
+        String input = "level";
+
+        // Create a Stack to store characters
+        Stack<Character> stack = new Stack<>();
+
+        // Push each character onto the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);  // LIFO — last char pushed comes out first
+        }
+
+        // Pop characters to build reversed string
+        String reversed = "";
+        while (!stack.isEmpty()) {
+            reversed = reversed + stack.pop();
+        }
+
+        System.out.println("Input    : " + input);
+        System.out.println("Reversed : " + reversed);
+
+        // Compare original with stack-reversed string
+        if (input.equals(reversed)) {
+            System.out.println("\"" + input + "\" is a Palindrome.");
+        } else {
+            System.out.println("\"" + input + "\" is NOT a Palindrome.");
+        }
     }
+
 
     // ==========================================
     // UC6: Queue + Stack Based Palindrome Check
