@@ -63,7 +63,23 @@ public class PalindromeCheckerApp {
     // UC2: Hardcoded Palindrome Result
     // ==========================================
     public static void checkHardcodedPalindrome() {
-        // TODO: UC2 logic here
+
+        System.out.println("\n==========================================");
+        System.out.println("  UC2: Hardcoded Palindrome Check");
+        System.out.println("==========================================");
+
+        // Hardcoded string stored as a String literal
+        String word = "madam";
+
+        // Reverse the string
+        String reversed = new StringBuilder(word).reverse().toString();
+
+        // Conditional check
+        if (word.equals(reversed)) {
+            System.out.println("\"" + word + "\" is a Palindrome.");
+        } else {
+            System.out.println("\"" + word + "\" is NOT a Palindrome.");
+        }
     }
 
     // ==========================================
