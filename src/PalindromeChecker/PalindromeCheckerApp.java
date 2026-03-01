@@ -122,8 +122,53 @@ public class PalindromeCheckerApp {
     // ==========================================
     // UC4: Character Array Based Palindrome Check
     // ==========================================
+    /**
+     * Validates palindrome by converting string to char array
+     * and applying the two-pointer technique.
+     *
+     * Key Concepts: char[], array indexing,
+     * two-pointer technique, time complexity awareness
+     */
     public static void checkUsingCharArray() {
-        // TODO: UC4 logic here
+
+        System.out.println("\n==========================================");
+        System.out.println("  UC4: Character Array Based Palindrome Check");
+        System.out.println("==========================================");
+
+        // Declare and initialize the input string
+        String input = "radar";
+
+        // Convert the string into a character array
+        char[] chars = input.toCharArray();
+
+        // Initialize pointer at the beginning
+        int start = 0;
+
+        // Initialize pointer at the end
+        int end = chars.length - 1;
+
+        // Assume palindrome initially
+        boolean isPalindrome = true;
+
+        // Continue comparison until pointers cross
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                // Mismatch found — not a palindrome
+                isPalindrome = false;
+                break;
+            }
+            // Move pointers inward
+            start++;
+            end--;
+        }
+
+        System.out.println("Input : " + input);
+
+        if (isPalindrome) {
+            System.out.println("\"" + input + "\" is a Palindrome.");
+        } else {
+            System.out.println("\"" + input + "\" is NOT a Palindrome.");
+        }
     }
 
     // ==========================================
