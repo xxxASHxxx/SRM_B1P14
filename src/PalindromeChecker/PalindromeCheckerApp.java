@@ -85,8 +85,38 @@ public class PalindromeCheckerApp {
     // ==========================================
     // UC3: Palindrome Check Using String Reverse
     // ==========================================
+    /**
+     * Checks palindrome by reversing string using a for loop
+     * and string concatenation, then comparing with original.
+     *
+     * Key Concepts: for loop, String immutability,
+     * String concatenation (+), equals() method
+     */
     public static void checkUsingStringReverse() {
-        // TODO: UC3 logic here
+
+        System.out.println("\n==========================================");
+        System.out.println("  UC3: String Reverse Based Palindrome Check");
+        System.out.println("==========================================");
+
+        // Original hardcoded string
+        String original = "racecar";
+
+        // Reverse using for loop + String concatenation
+        // Note: Each + creates a new String object (immutability)
+        String reversed = "";
+        for (int i = original.length() - 1; i >= 0; i--) {
+            reversed = reversed + original.charAt(i);
+        }
+
+        System.out.println("Original : " + original);
+        System.out.println("Reversed : " + reversed);
+
+        // equals() compares content, not memory reference
+        if (original.equals(reversed)) {
+            System.out.println("\"" + original + "\" is a Palindrome.");
+        } else {
+            System.out.println("\"" + original + "\" is NOT a Palindrome.");
+        }
     }
 
     // ==========================================
