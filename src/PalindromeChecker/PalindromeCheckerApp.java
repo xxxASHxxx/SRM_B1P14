@@ -1,3 +1,5 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -180,30 +182,21 @@ public class PalindromeCheckerApp {
         System.out.println("  UC6: Queue + Stack Based Palindrome Check");
         System.out.println("==========================================");
 
-        // Define the input string to validate
         String input = "civic";
 
-        // Create a Queue to store characters in FIFO order
         Queue<Character> queue = new LinkedList<>();
-
-        // Create a Stack to store characters in LIFO order
         Stack<Character> stack = new Stack<>();
 
-        // Insert each character into both queue and stack
         for (char c : input.toCharArray()) {
-            queue.add(c);   // enqueue — adds to rear
-            stack.push(c);  // push    — adds to top
+            queue.add(c);
+            stack.push(c);
         }
 
-        // Flag to track palindrome status
         boolean isPalindrome = true;
 
-        // Compare characters until the queue becomes empty
-        // Queue removes from front (FIFO) → original order
-        // Stack removes from top  (LIFO) → reversed order
         while (!queue.isEmpty()) {
-            char fromQueue = queue.poll();  // dequeue from front
-            char fromStack = stack.pop();   // pop from top
+            char fromQueue = queue.poll();
+            char fromStack = stack.pop();
 
             if (fromQueue != fromStack) {
                 isPalindrome = false;
@@ -223,7 +216,53 @@ public class PalindromeCheckerApp {
     // ==========================================
     // UC7: Deque-Based Optimized Palindrome Checker
     // ==========================================
+    /**
+     * Validates palindrome using a Deque (Double Ended Queue).
+     * Characters are inserted, then removed from both front
+     * and rear simultaneously for direct comparison.
+     *
+     * Key Concepts: Deque, ArrayDeque, removeFirst(),
+     * removeLast(), front and rear access, optimized traversal
+     */
     public static void checkUsingDeque() {
-        // TODO: UC7 logic here
+
+        System.out.println("\n==========================================");
+        System.out.println("  UC7: Deque-Based Optimized Palindrome Check");
+        System.out.println("==========================================");
+
+        // Define the input string
+        String input = "refer";
+
+        // Create a Deque to store characters
+        Deque<Character> deque = new ArrayDeque<>();
+
+        // Add each character to the rear of the deque
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);
+        }
+
+        // Flag to track palindrome result
+        boolean isPalindrome = true;
+
+        // Continue comparison while more than one element exists
+        // removeFirst() → takes from front
+        // removeLast()  → takes from rear
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear  = deque.removeLast();
+
+            if (front != rear) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        System.out.println("Input : " + input);
+
+        if (isPalindrome) {
+            System.out.println("\"" + input + "\" is a Palindrome.");
+        } else {
+            System.out.println("\"" + input + "\" is NOT a Palindrome.");
+        }
     }
 }
