@@ -17,5 +17,17 @@ public class TrainConsistApp {
         // UC1: Initialize an empty bogie list
         List<String> bogies = new ArrayList<>();
         System.out.println("Initial bogie count: " + bogies.size());
+
+        // UC2: Dynamic Bogie Insertion and Removal
+        System.out.println("\n--- UC2: Dynamic Bogie Insertion and Removal ---");
+        ArrayList<String> passengerBogies = new ArrayList<>();
+        passengerBogies.add("Sleeper");
+        passengerBogies.add("AC Chair");
+        passengerBogies.add("First Class");
+        System.out.println("After insertions: " + passengerBogies);
+
+        passengerBogies.remove("AC Chair");
+        System.out.println("Contains 'Sleeper': " + passengerBogies.contains("Sleeper"));
+        System.out.println("Final list: " + passengerBogies);
     }
 }
