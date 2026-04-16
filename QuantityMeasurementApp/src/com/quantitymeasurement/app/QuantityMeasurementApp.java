@@ -1,18 +1,30 @@
 package com.quantitymeasurement.app;
 
 import com.quantitymeasurement.model.Feet;
+import com.quantitymeasurement.model.Inches;
 
 public class QuantityMeasurementApp {
+
+    static boolean compareFeet(double a, double b) {
+        Feet f1 = new Feet(a);
+        Feet f2 = new Feet(b);
+        return f1.equals(f2);
+    }
+
+    static boolean compareInches(double a, double b) {
+        Inches i1 = new Inches(a);
+        Inches i2 = new Inches(b);
+        return i1.equals(i2);
+    }
+
     public static void main(String[] args) {
         System.out.println("=== Quantity Measurement App ===");
 
-        // UC1 Demo
-        Feet f1 = new Feet(1.0);
-        Feet f2 = new Feet(1.0);
-        Feet f3 = new Feet(2.0);
+        // UC1 and UC2 Demo
+        System.out.println("Feet 1.0 equals Feet 1.0: " + compareFeet(1.0, 1.0));
+        System.out.println("Feet 1.0 equals Feet 2.0: " + compareFeet(1.0, 2.0));
 
-        System.out.println("Objects: " + f1 + ", " + f2 + ", " + f3);
-        System.out.println("Equality of 1.0 feet and 1.0 feet: " + f1.equals(f2));
-        System.out.println("Equality of 1.0 feet and 2.0 feet: " + f1.equals(f3));
+        System.out.println("Inches 1.0 equals Inches 1.0: " + compareInches(1.0, 1.0));
+        System.out.println("Inches 1.0 equals Inches 2.0: " + compareInches(1.0, 2.0));
     }
 }
