@@ -21,19 +21,21 @@ public class HotelBookingApp {
         Room doubleRoom = new DoubleRoom();
         Room suiteRoom = new SuiteRoom();
 
-        int singleAvailable = 3;
-        int doubleAvailable = 2;
-        int suiteAvailable = 1;
+        // UC3: Centralized Room Inventory with HashMap
+        com.bookmystay.inventory.RoomInventory inventory = new com.bookmystay.inventory.RoomInventory();
 
         System.out.println("Room Details & Availability:");
         singleRoom.displayDetails();
-        System.out.println("Available: " + singleAvailable);
+        System.out.println("Available: " + inventory.getAvailability(singleRoom.getRoomType()));
 
         doubleRoom.displayDetails();
-        System.out.println("Available: " + doubleAvailable);
+        System.out.println("Available: " + inventory.getAvailability(doubleRoom.getRoomType()));
 
         suiteRoom.displayDetails();
-        System.out.println("Available: " + suiteAvailable);
+        System.out.println("Available: " + inventory.getAvailability(suiteRoom.getRoomType()));
+        
+        System.out.println("---------------------------------------------------");
+        inventory.displayInventory();
     }
 }
 
