@@ -51,6 +51,13 @@ public class HotelBookingApp {
         queue.addRequest(new com.bookmystay.model.Reservation("R003", "Charlie", "SUITE"));
         
         queue.displayQueue();
+
+        System.out.println("---------------------------------------------------");
+        // UC6: Reservation Confirmation and Room Allocation
+        com.bookmystay.service.BookingService bookingService = new com.bookmystay.service.BookingService(inventory, queue);
+        while (queue.getSize() > 0) {
+            bookingService.processNextBooking();
+        }
     }
 }
 
