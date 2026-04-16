@@ -246,5 +246,12 @@ public class TrainConsistApp {
             }
         }
         System.out.println("After Bubble Sort: " + Arrays.toString(bogieCapacities));
+
+        // UC17: Alphabetical Sort Using Arrays.sort()
+        System.out.println("\n--- UC17: Alphabetical Sort Using Arrays.sort() ---");
+        String[] bogieTypes = {"Sleeper", "Guard", "Engine", "AC Chair", "Pantry", "First Class"};
+        System.out.println("Before Arrays.sort(): " + Arrays.toString(bogieTypes));
+        Arrays.sort(bogieTypes);
+        System.out.println("After Arrays.sort(): " + Arrays.toString(bogieTypes));
     }
 }
