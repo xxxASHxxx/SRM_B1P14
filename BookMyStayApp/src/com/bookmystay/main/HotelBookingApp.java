@@ -36,6 +36,12 @@ public class HotelBookingApp {
         
         System.out.println("---------------------------------------------------");
         inventory.displayInventory();
+
+        System.out.println("---------------------------------------------------");
+        // UC4: Room Search and Availability Check
+        java.util.List<Room> allRooms = java.util.Arrays.asList(singleRoom, doubleRoom, suiteRoom);
+        com.bookmystay.service.SearchService searchService = new com.bookmystay.service.SearchService(inventory, allRooms);
+        searchService.searchAvailableRooms();
     }
 }
 
