@@ -1,12 +1,14 @@
 package com.bookmystay.inventory;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Manages the inventory of rooms.
  */
-public class RoomInventory {
+public class RoomInventory implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Map<String, Integer> inventory;
 
     public RoomInventory() {

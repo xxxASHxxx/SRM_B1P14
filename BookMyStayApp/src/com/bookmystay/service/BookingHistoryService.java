@@ -1,13 +1,15 @@
 package com.bookmystay.service;
 
 import com.bookmystay.model.Reservation;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Service to maintain booking history.
  */
-public class BookingHistoryService {
+public class BookingHistoryService implements Serializable {
+    private static final long serialVersionUID = 1L;
     private List<Reservation> history;
 
     public BookingHistoryService() {

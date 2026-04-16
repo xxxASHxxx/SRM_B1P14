@@ -1,9 +1,12 @@
 package com.bookmystay.model;
 
+import java.io.Serializable;
+
 /**
  * Represents a room reservation request.
  */
-public class Reservation {
+public class Reservation implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String reservationId;
     private String guestName;
     private String roomType;

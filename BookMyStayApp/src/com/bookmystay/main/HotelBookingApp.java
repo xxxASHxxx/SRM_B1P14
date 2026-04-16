@@ -16,13 +16,29 @@ public class HotelBookingApp {
         System.out.println("Welcome to Book My Stay - Hotel Booking System v1.0");
         System.out.println("---------------------------------------------------");
 
+        System.out.println("---------------------------------------------------");
+        
+        // UC12: State Recovery
+        com.bookmystay.service.PersistenceService persistenceService = new com.bookmystay.service.PersistenceService();
+        com.bookmystay.service.PersistenceService.AppState state = persistenceService.loadState();
+        
+        com.bookmystay.inventory.RoomInventory inventory;
+        com.bookmystay.service.BookingHistoryService historyService;
+
+        if (state != null) {
+            inventory = state.inventory;
+            historyService = state.history;
+        } else {
+            inventory = new com.bookmystay.inventory.RoomInventory();
+            historyService = new com.bookmystay.service.BookingHistoryService();
+        }
+
         // UC2: Basic Room Types and Static Availability
         Room singleRoom = new SingleRoom();
         Room doubleRoom = new DoubleRoom();
         Room suiteRoom = new SuiteRoom();
 
-        // UC3: Centralized Room Inventory with HashMap
-        com.bookmystay.inventory.RoomInventory inventory = new com.bookmystay.inventory.RoomInventory();
+        // UC3: Centralized Room Inventory with HashMap - (Initialized during recovery phase above)
 
         System.out.println("Room Details & Availability:");
         singleRoom.displayDetails();
@@ -77,7 +93,6 @@ public class HotelBookingApp {
 
         System.out.println("---------------------------------------------------");
         // UC8: Booking History and Reporting
-        com.bookmystay.service.BookingHistoryService historyService = new com.bookmystay.service.BookingHistoryService();
         if ("CONFIRMED".equals(r1.getStatus()) || "FAILED".equals(r1.getStatus())) historyService.addToHistory(r1);
         if ("CONFIRMED".equals(r2.getStatus()) || "FAILED".equals(r2.getStatus())) historyService.addToHistory(r2);
         if ("CONFIRMED".equals(r3.getStatus()) || "FAILED".equals(r3.getStatus())) historyService.addToHistory(r3);
@@ -126,6 +141,10 @@ public class HotelBookingApp {
 
         System.out.println("Final Inventory State after Concurrent Booking:");
         inventory.displayInventory();
+
+        System.out.println("---------------------------------------------------");
+        // UC12: Persist state at shutdown
+        persistenceService.saveState(inventory, historyService);
     }
 }
 
