@@ -35,6 +35,24 @@ public class TrainConsistApp {
         System.out.println("Cargo assigned: " + cargo + " to " + shape + " bogie");
     }
 
+    static void searchBogie(List<String> bogies, String key) {
+        if (bogies.isEmpty()) {
+            throw new IllegalStateException("Cannot search: Train has no bogies loaded.");
+        }
+        boolean found = false;
+        for (String b : bogies) {
+            if (b.equals(key)) {
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            System.out.println(key + " found.");
+        } else {
+            System.out.println(key + " not found.");
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
 
@@ -299,5 +317,22 @@ public class TrainConsistApp {
         if (!binaryFound) {
             System.out.println("Bogie not found.");
         }
+
+        // UC20: Defensive Search with IllegalStateException
+        System.out.println("\n--- UC20: Defensive Search with IllegalStateException ---");
+        List<String> emptyList = new ArrayList<>();
+        System.out.println("Testing with empty list:");
+        try {
+            searchBogie(emptyList, "Sleeper");
+        } catch (IllegalStateException e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+        }
+
+        System.out.println("\nTesting with populated list:");
+        List<String> populatedList = new ArrayList<>();
+        populatedList.add("Sleeper");
+        populatedList.add("AC");
+        populatedList.add("Guard");
+        searchBogie(populatedList, "AC");
     }
 }
