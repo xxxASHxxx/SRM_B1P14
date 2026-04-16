@@ -271,5 +271,33 @@ public class TrainConsistApp {
         if (!found) {
             System.out.println("Bogie not found.");
         }
+
+        // UC19: Binary Search on Sorted Bogie IDs
+        System.out.println("\n--- UC19: Binary Search on Sorted Bogie IDs ---");
+        String[] sortedBogieIds = {"BG-001", "BG-003", "BG-005", "BG-007", "BG-009"};
+        String binaryKey = "BG-007";
+        boolean binaryFound = false;
+
+        int low = 0;
+        int high = sortedBogieIds.length - 1;
+
+        System.out.println("Binary Search Result:");
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int comparison = binaryKey.compareTo(sortedBogieIds[mid]);
+
+            if (comparison == 0) {
+                System.out.println("Bogie " + binaryKey + " found at index: " + mid);
+                binaryFound = true;
+                break;
+            } else if (comparison < 0) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        if (!binaryFound) {
+            System.out.println("Bogie not found.");
+        }
     }
 }
