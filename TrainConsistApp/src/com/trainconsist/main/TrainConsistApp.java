@@ -1,5 +1,7 @@
 package com.trainconsist.main;
 
+import com.trainconsist.exception.CargoSafetyException;
+
 import com.trainconsist.exception.InvalidCapacityException;
 import com.trainconsist.model.Bogie;
 import com.trainconsist.model.GoodsBogie;
@@ -24,6 +26,13 @@ import java.util.stream.Collectors;
  * @version 1.0
  */
 public class TrainConsistApp {
+
+    static void assignCargo(String shape, String cargo) throws CargoSafetyException {
+        if ("rectangular".equals(shape) && "Petroleum".equals(cargo)) {
+            throw new CargoSafetyException("Petroleum cannot be assigned to rectangular bogie.");
+        }
+        System.out.println("Cargo assigned: " + cargo + " to " + shape + " bogie");
+    }
 
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
@@ -207,6 +216,18 @@ public class TrainConsistApp {
             System.out.println("Success: Created " + pb2);
         } catch (InvalidCapacityException e) {
             System.out.println("Exception Caught: " + e.getMessage());
+        }
+
+        // UC15: Runtime Exception for Unsafe Cargo Assignment
+        System.out.println("\n--- UC15: Runtime Exception for Unsafe Cargo Assignment ---");
+        assignCargo("cylindrical", "Petroleum");
+
+        try {
+            assignCargo("rectangular", "Petroleum");
+        } catch (CargoSafetyException e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+        } finally {
+            System.out.println("Cargo assignment attempt complete.");
         }
     }
 }
