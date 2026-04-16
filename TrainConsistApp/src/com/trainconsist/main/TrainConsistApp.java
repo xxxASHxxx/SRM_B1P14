@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -135,5 +137,22 @@ public class TrainConsistApp {
             .reduce(0, Integer::sum);
         
         System.out.println("Total seating capacity: " + totalCapacity);
+
+        // UC11: Input Validation with Regular Expressions
+        System.out.println("\n--- UC11: Input Validation with Regular Expressions ---");
+        Pattern trainIdPattern = Pattern.compile("TRN-\\d{4}");
+        Pattern cargoCodePattern = Pattern.compile("PET-[A-Z]{2}");
+
+        String[] trainIdTests = {"TRN-1234", "TRN-AB"};
+        for (String id : trainIdTests) {
+            Matcher m = trainIdPattern.matcher(id);
+            System.out.println(id + " -> " + (m.matches() ? "Valid" : "Invalid"));
+        }
+
+        String[] cargoCodeTests = {"PET-AB", "PET-12"};
+        for (String code : cargoCodeTests) {
+            Matcher m = cargoCodePattern.matcher(code);
+            System.out.println(code + " -> " + (m.matches() ? "Valid" : "Invalid"));
+        }
     }
 }
