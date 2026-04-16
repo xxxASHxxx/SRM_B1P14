@@ -1,6 +1,7 @@
 package com.trainconsist.main;
 
 import com.trainconsist.model.Bogie;
+import com.trainconsist.model.GoodsBogie;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -154,5 +155,17 @@ public class TrainConsistApp {
             Matcher m = cargoCodePattern.matcher(code);
             System.out.println(code + " -> " + (m.matches() ? "Valid" : "Invalid"));
         }
+
+        // UC12: Safety Compliance Check with Stream allMatch()
+        System.out.println("\n--- UC12: Safety Compliance Check with Stream allMatch() ---");
+        List<GoodsBogie> goodsBogies = new ArrayList<>();
+        goodsBogies.add(new GoodsBogie("cylindrical", "Petroleum"));
+        goodsBogies.add(new GoodsBogie("cylindrical", "Petroleum"));
+        goodsBogies.add(new GoodsBogie("rectangular", "Coal"));
+
+        boolean isSafeCompliant = goodsBogies.stream()
+            .allMatch(g -> g.shape.equals("cylindrical") ? g.cargo.equals("Petroleum") : true);
+
+        System.out.println("Train safety compliant: " + isSafeCompliant);
     }
 }
