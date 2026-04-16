@@ -86,6 +86,17 @@ public class HotelBookingApp {
 
         com.bookmystay.service.BookingReportService reportService = new com.bookmystay.service.BookingReportService(historyService);
         reportService.generateReport();
+
+        System.out.println("---------------------------------------------------");
+        // UC10: Booking Cancellation and Inventory Rollback
+        com.bookmystay.service.CancellationService cancellationService = new com.bookmystay.service.CancellationService(inventory, historyService);
+        try {
+            cancellationService.cancelBooking("R001");
+        } catch (com.bookmystay.exception.InvalidBookingException e) {
+            System.out.println(e.getMessage());
+        }
+
+        inventory.displayInventory();
     }
 }
 

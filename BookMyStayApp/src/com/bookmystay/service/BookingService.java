@@ -45,6 +45,7 @@ public class BookingService {
 
             inventory.updateAvailability(roomType, availability - 1);
             reservation.setStatus("CONFIRMED");
+            reservation.setRoomId(roomId);
 
             System.out.println("  -> SUCCESS! Allocated Room ID: " + roomId);
         } catch (com.bookmystay.exception.InvalidBookingException e) {
