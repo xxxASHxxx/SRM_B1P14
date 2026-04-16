@@ -97,6 +97,35 @@ public class HotelBookingApp {
         }
 
         inventory.displayInventory();
+
+        System.out.println("---------------------------------------------------");
+        // UC11: Concurrent Booking Simulation with Thread Safety
+        queue.addRequest(new com.bookmystay.model.Reservation("R004", "Dave", "SINGLE"));
+        queue.addRequest(new com.bookmystay.model.Reservation("R005", "Eve", "SINGLE"));
+        queue.addRequest(new com.bookmystay.model.Reservation("R006", "Frank", "SINGLE"));
+        queue.addRequest(new com.bookmystay.model.Reservation("R007", "Grace", "SINGLE"));
+        queue.addRequest(new com.bookmystay.model.Reservation("R008", "Heidi", "SINGLE"));
+
+        com.bookmystay.service.ConcurrentBookingProcessor processor = new com.bookmystay.service.ConcurrentBookingProcessor(queue, inventory);
+        
+        Thread t1 = new Thread(processor, "Thread-1");
+        Thread t2 = new Thread(processor, "Thread-2");
+        Thread t3 = new Thread(processor, "Thread-3");
+
+        t1.start();
+        t2.start();
+        t3.start();
+
+        try {
+            t1.join();
+            t2.join();
+            t3.join();
+        } catch (InterruptedException e) {
+            System.out.println("Threads interrupted: " + e.getMessage());
+        }
+
+        System.out.println("Final Inventory State after Concurrent Booking:");
+        inventory.displayInventory();
     }
 }
 
