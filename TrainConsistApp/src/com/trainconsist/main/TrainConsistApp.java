@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Main entry point for the Train Consist Management Application.
@@ -103,6 +104,17 @@ public class TrainConsistApp {
         
         System.out.println("Bogies sorted by capacity:");
         for (Bogie b : passengerBogieObjects) {
+            System.out.println(b);
+        }
+
+        // UC8: Stream Filtering by Capacity
+        System.out.println("\n--- UC8: Stream Filtering by Capacity ---");
+        List<Bogie> highCapacityBogies = passengerBogieObjects.stream()
+            .filter(b -> b.capacity > 60)
+            .collect(Collectors.toList());
+        
+        System.out.println("Bogies with capacity > 60:");
+        for (Bogie b : highCapacityBogies) {
             System.out.println(b);
         }
     }
