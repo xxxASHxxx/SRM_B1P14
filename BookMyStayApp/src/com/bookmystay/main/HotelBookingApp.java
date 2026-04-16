@@ -58,6 +58,18 @@ public class HotelBookingApp {
         while (queue.getSize() > 0) {
             bookingService.processNextBooking();
         }
+
+        System.out.println("---------------------------------------------------");
+        // UC7: Add-On Service Selection
+        com.bookmystay.service.AddOnServiceManager addOnManager = new com.bookmystay.service.AddOnServiceManager();
+        com.bookmystay.model.AddOnService breakfast = new com.bookmystay.model.AddOnService("Breakfast", 500.0);
+        com.bookmystay.model.AddOnService spa = new com.bookmystay.model.AddOnService("Spa", 1500.0);
+        
+        addOnManager.addService("R001", breakfast);
+        addOnManager.addService("R001", spa);
+
+        addOnManager.displayServicesForReservation("R001");
+        System.out.println("Total Add-On Cost for R001: Rs. " + addOnManager.getTotalCost("R001"));
     }
 }
 
