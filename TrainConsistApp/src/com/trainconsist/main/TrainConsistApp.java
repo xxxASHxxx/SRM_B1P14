@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -229,5 +230,21 @@ public class TrainConsistApp {
         } finally {
             System.out.println("Cargo assignment attempt complete.");
         }
+
+        // UC16: Bubble Sort on Bogie Capacities
+        System.out.println("\n--- UC16: Bubble Sort on Bogie Capacities ---");
+        int[] bogieCapacities = {72, 48, 64, 36, 80, 52};
+        System.out.println("Before Bubble Sort: " + Arrays.toString(bogieCapacities));
+
+        for (int i = 0; i < bogieCapacities.length - 1; i++) {
+            for (int j = 0; j < bogieCapacities.length - i - 1; j++) {
+                if (bogieCapacities[j] > bogieCapacities[j + 1]) {
+                    int temp = bogieCapacities[j];
+                    bogieCapacities[j] = bogieCapacities[j + 1];
+                    bogieCapacities[j + 1] = temp;
+                }
+            }
+        }
+        System.out.println("After Bubble Sort: " + Arrays.toString(bogieCapacities));
     }
 }
