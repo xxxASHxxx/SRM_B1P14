@@ -1,10 +1,12 @@
 package com.trainconsist.main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -75,5 +77,17 @@ public class TrainConsistApp {
             System.out.println("  " + bogie);
         }
         System.out.println("Formation size: " + trainFormation.size());
+
+        // UC6: Bogie-Capacity Mapping with HashMap
+        System.out.println("\n--- UC6: Bogie-Capacity Mapping with HashMap ---");
+        Map<String, Integer> bogieCapacity = new HashMap<>();
+        bogieCapacity.put("Sleeper", 72);
+        bogieCapacity.put("AC Chair", 64);
+        bogieCapacity.put("First Class", 48);
+        
+        System.out.println("Bogie Capacities:");
+        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+            System.out.println("Bogie: " + entry.getKey() + " | Capacity: " + entry.getValue());
+        }
     }
 }
