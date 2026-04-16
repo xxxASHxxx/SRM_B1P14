@@ -1,7 +1,9 @@
 package com.trainconsist.main;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Main entry point for the Train Consist Management Application.
@@ -29,5 +31,16 @@ public class TrainConsistApp {
         passengerBogies.remove("AC Chair");
         System.out.println("Contains 'Sleeper': " + passengerBogies.contains("Sleeper"));
         System.out.println("Final list: " + passengerBogies);
+
+        // UC3: Unique Bogie ID Enforcement with HashSet
+        System.out.println("\n--- UC3: Unique Bogie ID Enforcement with HashSet ---");
+        Set<String> bogieIdSet = new HashSet<>();
+        bogieIdSet.add("BG-001");
+        bogieIdSet.add("BG-002");
+        bogieIdSet.add("BG-003");
+        bogieIdSet.add("BG-001"); // duplicate
+        bogieIdSet.add("BG-004");
+        System.out.println("Bogie ID Set: " + bogieIdSet);
+        System.out.println("Total unique bogie IDs: " + bogieIdSet.size());
     }
 }
