@@ -30,10 +30,15 @@ public class BookingService {
             return;
         }
 
-        String roomType = reservation.getRoomType();
-        int availability = inventory.getAvailability(roomType);
+        System.out.println("Processing " + reservation.getReservationId() + "...");
+        try {
+            com.bookmystay.validator.InvalidBookingValidator.validateReservation(reservation);
+            com.bookmystay.validator.InvalidBookingValidator.validateRoomType(reservation.getRoomType(), inventory);
+            com.bookmystay.validator.InvalidBookingValidator.validateAvailability(reservation.getRoomType(), inventory);
 
-        if (availability > 0) {
+            String roomType = reservation.getRoomType();
+            int availability = inventory.getAvailability(roomType);
+
             String roomId = roomType + "-" + UUID.randomUUID().toString().substring(0, 8);
             allocatedRooms.putIfAbsent(roomType, new HashSet<>());
             allocatedRooms.get(roomType).add(roomId);
@@ -41,10 +46,10 @@ public class BookingService {
             inventory.updateAvailability(roomType, availability - 1);
             reservation.setStatus("CONFIRMED");
 
-            System.out.println("Processing " + reservation.getReservationId() + "... SUCCESS! Allocated Room ID: " + roomId);
-        } else {
+            System.out.println("  -> SUCCESS! Allocated Room ID: " + roomId);
+        } catch (com.bookmystay.exception.InvalidBookingException e) {
             reservation.setStatus("FAILED");
-            System.out.println("Processing " + reservation.getReservationId() + "... FAILED! No " + roomType + " rooms available.");
+            System.out.println("  -> FAILED! Reason: " + e.getMessage());
         }
     }
 }
