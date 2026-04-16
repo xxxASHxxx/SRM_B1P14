@@ -42,6 +42,15 @@ public class HotelBookingApp {
         java.util.List<Room> allRooms = java.util.Arrays.asList(singleRoom, doubleRoom, suiteRoom);
         com.bookmystay.service.SearchService searchService = new com.bookmystay.service.SearchService(inventory, allRooms);
         searchService.searchAvailableRooms();
+
+        System.out.println("---------------------------------------------------");
+        // UC5: Booking Request Queue with FIFO
+        com.bookmystay.queue.BookingRequestQueue queue = new com.bookmystay.queue.BookingRequestQueue();
+        queue.addRequest(new com.bookmystay.model.Reservation("R001", "Alice", "SINGLE"));
+        queue.addRequest(new com.bookmystay.model.Reservation("R002", "Bob", "DOUBLE"));
+        queue.addRequest(new com.bookmystay.model.Reservation("R003", "Charlie", "SUITE"));
+        
+        queue.displayQueue();
     }
 }
 
