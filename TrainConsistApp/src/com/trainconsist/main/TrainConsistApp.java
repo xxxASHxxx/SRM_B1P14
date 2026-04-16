@@ -2,6 +2,7 @@ package com.trainconsist.main;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -60,5 +61,19 @@ public class TrainConsistApp {
         trainConsist.removeFirst();
         trainConsist.removeLast();
         System.out.println("Final ordered consist: " + trainConsist);
+
+        // UC5: Insertion-Ordered Unique Formation with LinkedHashSet
+        System.out.println("\n--- UC5: Insertion-Ordered Unique Formation with LinkedHashSet ---");
+        LinkedHashSet<String> trainFormation = new LinkedHashSet<>();
+        trainFormation.add("Engine");
+        trainFormation.add("Sleeper");
+        trainFormation.add("Cargo");
+        trainFormation.add("Guard");
+        trainFormation.add("Sleeper"); // duplicate
+        System.out.println("Train Formation (insertion order preserved):");
+        for (String bogie : trainFormation) {
+            System.out.println("  " + bogie);
+        }
+        System.out.println("Formation size: " + trainFormation.size());
     }
 }
