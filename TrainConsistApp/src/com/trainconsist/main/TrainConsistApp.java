@@ -1,6 +1,8 @@
 package com.trainconsist.main;
 
+import com.trainconsist.model.Bogie;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -88,6 +90,20 @@ public class TrainConsistApp {
         System.out.println("Bogie Capacities:");
         for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
             System.out.println("Bogie: " + entry.getKey() + " | Capacity: " + entry.getValue());
+        }
+
+        // UC7: Custom Object Sorting with Comparator
+        System.out.println("\n--- UC7: Custom Object Sorting with Comparator ---");
+        List<Bogie> passengerBogieObjects = new ArrayList<>();
+        passengerBogieObjects.add(new Bogie("Sleeper", 72));
+        passengerBogieObjects.add(new Bogie("AC Chair", 64));
+        passengerBogieObjects.add(new Bogie("First Class", 48));
+
+        passengerBogieObjects.sort(Comparator.comparingInt(b -> b.capacity));
+        
+        System.out.println("Bogies sorted by capacity:");
+        for (Bogie b : passengerBogieObjects) {
+            System.out.println(b);
         }
     }
 }
