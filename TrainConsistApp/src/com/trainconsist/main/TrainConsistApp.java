@@ -253,5 +253,23 @@ public class TrainConsistApp {
         System.out.println("Before Arrays.sort(): " + Arrays.toString(bogieTypes));
         Arrays.sort(bogieTypes);
         System.out.println("After Arrays.sort(): " + Arrays.toString(bogieTypes));
+
+        // UC18: Linear Search for Bogie ID
+        System.out.println("\n--- UC18: Linear Search for Bogie ID ---");
+        String[] bogieIds = {"BG-001", "BG-005", "BG-009", "BG-003", "BG-007"};
+        String searchKey = "BG-003";
+        boolean found = false;
+
+        System.out.println("Linear Search Result:");
+        for (int i = 0; i < bogieIds.length; i++) {
+            if (searchKey.equals(bogieIds[i])) {
+                System.out.println("Bogie " + searchKey + " found at index: " + i);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Bogie not found.");
+        }
     }
 }
