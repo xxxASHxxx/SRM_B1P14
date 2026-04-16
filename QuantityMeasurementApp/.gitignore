@@ -1,0 +1,25 @@
+IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+Eclipse
+.classpath
+.project
+.settings/
+
+VS Code
+.vscode/
+
+Compiled class files
+*.class
+bin/
+target/
+
+OS files
+.DS_Store
+Thumbs.db
+
+Test reports
+test-output/
