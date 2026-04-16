@@ -167,5 +167,28 @@ public class TrainConsistApp {
             .allMatch(g -> g.shape.equals("cylindrical") ? g.cargo.equals("Petroleum") : true);
 
         System.out.println("Train safety compliant: " + isSafeCompliant);
+
+        // UC13: Performance Benchmarking Loop vs Stream
+        System.out.println("\n--- UC13: Performance Benchmarking Loop vs Stream ---");
+        for (int i = 0; i < 10; i++) {
+            passengerBogieObjects.add(new Bogie("Bogie " + i, 30 + (i * 10)));
+        }
+
+        long startLoop = System.nanoTime();
+        List<Bogie> loopFiltered = new ArrayList<>();
+        for (Bogie b : passengerBogieObjects) {
+            if (b.capacity > 60) {
+                loopFiltered.add(b);
+            }
+        }
+        long endLoop = System.nanoTime();
+        System.out.println("Loop time: " + (endLoop - startLoop) + " ns");
+
+        long startStream = System.nanoTime();
+        List<Bogie> streamFiltered = passengerBogieObjects.stream()
+            .filter(b -> b.capacity > 60)
+            .collect(Collectors.toList());
+        long endStream = System.nanoTime();
+        System.out.println("Stream time: " + (endStream - startStream) + " ns");
     }
 }
