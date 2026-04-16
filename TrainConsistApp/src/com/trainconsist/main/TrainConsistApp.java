@@ -1,7 +1,9 @@
 package com.trainconsist.main;
 
+import com.trainconsist.exception.InvalidCapacityException;
 import com.trainconsist.model.Bogie;
 import com.trainconsist.model.GoodsBogie;
+import com.trainconsist.model.PassengerBogie;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -190,5 +192,21 @@ public class TrainConsistApp {
             .collect(Collectors.toList());
         long endStream = System.nanoTime();
         System.out.println("Stream time: " + (endStream - startStream) + " ns");
+
+        // UC14: Custom Exception for Invalid Bogie Capacity
+        System.out.println("\n--- UC14: Custom Exception for Invalid Bogie Capacity ---");
+        try {
+            PassengerBogie pb1 = new PassengerBogie("Sleeper", 72);
+            System.out.println("Success: Created " + pb1);
+        } catch (InvalidCapacityException e) {
+            System.out.println("Failed: " + e.getMessage());
+        }
+
+        try {
+            PassengerBogie pb2 = new PassengerBogie("Invalid", -5);
+            System.out.println("Success: Created " + pb2);
+        } catch (InvalidCapacityException e) {
+            System.out.println("Exception Caught: " + e.getMessage());
+        }
     }
 }
