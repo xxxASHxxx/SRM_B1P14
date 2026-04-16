@@ -2,6 +2,7 @@ package com.trainconsist.main;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -42,5 +43,22 @@ public class TrainConsistApp {
         bogieIdSet.add("BG-004");
         System.out.println("Bogie ID Set: " + bogieIdSet);
         System.out.println("Total unique bogie IDs: " + bogieIdSet.size());
+
+        // UC4: Ordered Consist Management with LinkedList
+        System.out.println("\n--- UC4: Ordered Consist Management with LinkedList ---");
+        LinkedList<String> trainConsist = new LinkedList<>();
+        trainConsist.add("Engine");
+        trainConsist.add("Sleeper");
+        trainConsist.add("AC");
+        trainConsist.add("Cargo");
+        trainConsist.add("Guard");
+        System.out.println("Initial consist: " + trainConsist);
+
+        trainConsist.add(2, "Pantry Car");
+        System.out.println("After inserting Pantry Car at index 2: " + trainConsist);
+
+        trainConsist.removeFirst();
+        trainConsist.removeLast();
+        System.out.println("Final ordered consist: " + trainConsist);
     }
 }
