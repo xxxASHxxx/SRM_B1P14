@@ -127,5 +127,13 @@ public class TrainConsistApp {
         for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
             System.out.println(entry.getKey() + " -> " + entry.getValue());
         }
+
+        // UC10: Capacity Aggregation with Stream reduce()
+        System.out.println("\n--- UC10: Capacity Aggregation with Stream reduce() ---");
+        int totalCapacity = passengerBogieObjects.stream()
+            .map(b -> b.capacity)
+            .reduce(0, Integer::sum);
+        
+        System.out.println("Total seating capacity: " + totalCapacity);
     }
 }
