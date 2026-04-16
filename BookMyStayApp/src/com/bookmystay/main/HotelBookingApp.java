@@ -46,9 +46,13 @@ public class HotelBookingApp {
         System.out.println("---------------------------------------------------");
         // UC5: Booking Request Queue with FIFO
         com.bookmystay.queue.BookingRequestQueue queue = new com.bookmystay.queue.BookingRequestQueue();
-        queue.addRequest(new com.bookmystay.model.Reservation("R001", "Alice", "SINGLE"));
-        queue.addRequest(new com.bookmystay.model.Reservation("R002", "Bob", "DOUBLE"));
-        queue.addRequest(new com.bookmystay.model.Reservation("R003", "Charlie", "SUITE"));
+        com.bookmystay.model.Reservation r1 = new com.bookmystay.model.Reservation("R001", "Alice", "SINGLE");
+        com.bookmystay.model.Reservation r2 = new com.bookmystay.model.Reservation("R002", "Bob", "DOUBLE");
+        com.bookmystay.model.Reservation r3 = new com.bookmystay.model.Reservation("R003", "Charlie", "SUITE");
+
+        queue.addRequest(r1);
+        queue.addRequest(r2);
+        queue.addRequest(r3);
         
         queue.displayQueue();
 
@@ -70,6 +74,18 @@ public class HotelBookingApp {
 
         addOnManager.displayServicesForReservation("R001");
         System.out.println("Total Add-On Cost for R001: Rs. " + addOnManager.getTotalCost("R001"));
+
+        System.out.println("---------------------------------------------------");
+        // UC8: Booking History and Reporting
+        com.bookmystay.service.BookingHistoryService historyService = new com.bookmystay.service.BookingHistoryService();
+        if ("CONFIRMED".equals(r1.getStatus()) || "FAILED".equals(r1.getStatus())) historyService.addToHistory(r1);
+        if ("CONFIRMED".equals(r2.getStatus()) || "FAILED".equals(r2.getStatus())) historyService.addToHistory(r2);
+        if ("CONFIRMED".equals(r3.getStatus()) || "FAILED".equals(r3.getStatus())) historyService.addToHistory(r3);
+        
+        historyService.displayHistory();
+
+        com.bookmystay.service.BookingReportService reportService = new com.bookmystay.service.BookingReportService(historyService);
+        reportService.generateReport();
     }
 }
 
