@@ -117,5 +117,15 @@ public class TrainConsistApp {
         for (Bogie b : highCapacityBogies) {
             System.out.println(b);
         }
+
+        // UC9: Grouping Bogies with Stream Collectors
+        System.out.println("\n--- UC9: Grouping Bogies with Stream Collectors ---");
+        Map<String, List<Bogie>> groupedBogies = passengerBogieObjects.stream()
+            .collect(Collectors.groupingBy(b -> b.name));
+
+        System.out.println("Grouped Bogies:");
+        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
     }
 }
