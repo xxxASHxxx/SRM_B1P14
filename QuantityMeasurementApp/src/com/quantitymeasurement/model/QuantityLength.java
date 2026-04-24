@@ -32,7 +32,7 @@ public class QuantityLength {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         QuantityLength that = (QuantityLength) obj;
-        return Double.compare(this.getValueInBaseUnit(), that.getValueInBaseUnit()) == 0;
+        return Math.abs(this.getValueInBaseUnit() - that.getValueInBaseUnit()) < 0.0001;
     }
 
     @Override
