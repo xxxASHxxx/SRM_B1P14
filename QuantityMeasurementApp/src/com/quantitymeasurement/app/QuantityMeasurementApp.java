@@ -55,5 +55,15 @@ public class QuantityMeasurementApp {
         System.out.println("add(1.0 FEET, 12.0 INCH, YARD) \u2248 " + QuantityLength.add(feet1, inch12, Unit.YARD));
         System.out.println("add(1.0 YARD, 3.0 FEET, INCH) = " + QuantityLength.add(yard1_uc6, feet3_uc6, Unit.INCH));
         System.out.println("add(1.0 FEET, 1.0 FEET, CENTIMETER) \u2248 " + QuantityLength.add(feet1, feet1, Unit.CENTIMETER));
+
+        // UC8 Demo
+        System.out.println("\n=== UC8: Refactored LengthUnit Demo ===");
+        com.quantitymeasurement.model.QuantityLengthV2 f1_v2 = new com.quantitymeasurement.model.QuantityLengthV2(1.0, com.quantitymeasurement.model.LengthUnit.FEET);
+        com.quantitymeasurement.model.QuantityLengthV2 f2_v2 = new com.quantitymeasurement.model.QuantityLengthV2(1.0, com.quantitymeasurement.model.LengthUnit.FEET);
+        System.out.println("QuantityLengthV2 demo \u2014 1.0 FEET == 1.0 FEET : " + f1_v2.equals(f2_v2));
+        System.out.println("LengthUnit.FEET.convertToBaseUnit(3.0) = " + com.quantitymeasurement.model.LengthUnit.FEET.convertToBaseUnit(3.0));
+        System.out.println("LengthUnit.YARD.convertFromBaseUnit(3.0) = " + com.quantitymeasurement.model.LengthUnit.YARD.convertFromBaseUnit(3.0));
+        com.quantitymeasurement.model.QuantityLengthV2 i12_v2 = new com.quantitymeasurement.model.QuantityLengthV2(12.0, com.quantitymeasurement.model.LengthUnit.INCH);
+        System.out.println("add(1.0 FEET, 12.0 INCH, YARD) \u2248 " + com.quantitymeasurement.model.QuantityLengthV2.add(f1_v2, i12_v2, com.quantitymeasurement.model.LengthUnit.YARD));
     }
 }
