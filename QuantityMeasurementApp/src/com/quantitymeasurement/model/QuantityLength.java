@@ -60,4 +60,26 @@ public class QuantityLength {
         double baseValue = value * sourceUnit.getConversionFactor();
         return baseValue / targetUnit.getConversionFactor();
     }
+    public double getValue() {
+        return this.value;
+    }
+
+    public Unit getUnit() {
+        return this.unit;
+    }
+
+    /**
+     * Adds two QuantityLength values and returns result in the unit of length1.
+     * @param length1 first operand (result unit is taken from this)
+     * @param length2 second operand
+     * @return new QuantityLength representing the sum in length1's unit
+     * @throws IllegalArgumentException if either operand is null
+     */
+    public static QuantityLength add(QuantityLength length1, QuantityLength length2) {
+        if (length1 == null) throw new IllegalArgumentException("length1 must not be null.");
+        if (length2 == null) throw new IllegalArgumentException("length2 must not be null.");
+        double sumInBase = length1.getValueInBaseUnit() + length2.getValueInBaseUnit();
+        double resultValue = sumInBase / length1.unit.getConversionFactor();
+        return new QuantityLength(resultValue, length1.unit);
+    }
 }

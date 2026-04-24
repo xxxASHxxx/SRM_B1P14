@@ -38,5 +38,16 @@ public class QuantityMeasurementApp {
         System.out.println("convert(1.0, FEET, INCH) = " + QuantityLength.convert(1.0, Unit.FEET, Unit.INCH));
         System.out.println("convert(1.0, YARD, FEET) = " + QuantityLength.convert(1.0, Unit.YARD, Unit.FEET));
         System.out.println("convert(2.54, CENTIMETER, INCH) \u2248 " + QuantityLength.convert(2.54, Unit.CENTIMETER, Unit.INCH));
+
+        // UC6 Demo
+        System.out.println("\n--- UC6 Demo ---");
+        QuantityLength feet1 = new QuantityLength(1.0, Unit.FEET);
+        QuantityLength inch12 = new QuantityLength(12.0, Unit.INCH);
+        System.out.println("add(1.0 FEET, 12.0 INCH) = " + QuantityLength.add(feet1, inch12));
+        System.out.println("add(12.0 INCH, 1.0 FEET) = " + QuantityLength.add(inch12, feet1));
+        
+        QuantityLength yard1_uc6 = new QuantityLength(1.0, Unit.YARD);
+        QuantityLength feet3_uc6 = new QuantityLength(3.0, Unit.FEET);
+        System.out.println("add(1.0 YARD, 3.0 FEET) = " + QuantityLength.add(yard1_uc6, feet3_uc6));
     }
 }
