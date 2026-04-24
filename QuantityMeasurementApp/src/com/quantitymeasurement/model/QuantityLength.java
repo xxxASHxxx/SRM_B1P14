@@ -82,4 +82,20 @@ public class QuantityLength {
         double resultValue = sumInBase / length1.unit.getConversionFactor();
         return new QuantityLength(resultValue, length1.unit);
     }
+    /**
+     * Adds two QuantityLength values and returns result in the explicitly specified targetUnit.
+     * @param length1 first operand
+     * @param length2 second operand
+     * @param targetUnit the unit for the result
+     * @return new QuantityLength representing the sum in targetUnit
+     * @throws IllegalArgumentException if any argument is null
+     */
+    public static QuantityLength add(QuantityLength length1, QuantityLength length2, Unit targetUnit) {
+        if (length1 == null) throw new IllegalArgumentException("length1 must not be null.");
+        if (length2 == null) throw new IllegalArgumentException("length2 must not be null.");
+        if (targetUnit == null) throw new IllegalArgumentException("targetUnit must not be null.");
+        double sumInBase = length1.getValueInBaseUnit() + length2.getValueInBaseUnit();
+        double resultValue = sumInBase / targetUnit.getConversionFactor();
+        return new QuantityLength(resultValue, targetUnit);
+    }
 }
