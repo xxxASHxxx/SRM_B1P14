@@ -32,5 +32,11 @@ public class QuantityMeasurementApp {
         QuantityLength yard1_again = new QuantityLength(1.0, Unit.YARD);
         QuantityLength inch36 = new QuantityLength(36.0, Unit.INCH);
         System.out.println("1.0 YARD == 36.0 INCH : " + yard1_again.equals(inch36));
+
+        // UC5 Demo
+        System.out.println("\n--- UC5 Demo ---");
+        System.out.println("convert(1.0, FEET, INCH) = " + QuantityLength.convert(1.0, Unit.FEET, Unit.INCH));
+        System.out.println("convert(1.0, YARD, FEET) = " + QuantityLength.convert(1.0, Unit.YARD, Unit.FEET));
+        System.out.println("convert(2.54, CENTIMETER, INCH) \u2248 " + QuantityLength.convert(2.54, Unit.CENTIMETER, Unit.INCH));
     }
 }

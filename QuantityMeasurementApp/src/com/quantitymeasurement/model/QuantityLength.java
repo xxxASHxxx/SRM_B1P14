@@ -44,4 +44,20 @@ public class QuantityLength {
     public String toString() {
         return "QuantityLength(" + value + " " + unit + ")";
     }
+
+    /**
+     * Converts a value from sourceUnit to targetUnit.
+     * @param value the numeric value to convert
+     * @param sourceUnit the unit of the input value
+     * @param targetUnit the unit to convert to
+     * @return the converted value in targetUnit
+     * @throws IllegalArgumentException if value is NaN/Infinite, or units are null
+     */
+    public static double convert(double value, Unit sourceUnit, Unit targetUnit) {
+        if (!Double.isFinite(value)) throw new IllegalArgumentException("Value must be finite.");
+        if (sourceUnit == null) throw new IllegalArgumentException("Source unit must not be null.");
+        if (targetUnit == null) throw new IllegalArgumentException("Target unit must not be null.");
+        double baseValue = value * sourceUnit.getConversionFactor();
+        return baseValue / targetUnit.getConversionFactor();
+    }
 }
