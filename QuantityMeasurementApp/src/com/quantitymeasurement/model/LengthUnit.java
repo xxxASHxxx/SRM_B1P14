@@ -8,7 +8,7 @@ package com.quantitymeasurement.model;
  * @author QuantityMeasurementApp
  * @version UC8
  */
-public enum LengthUnit {
+public enum LengthUnit implements IMeasurable {
 
     FEET(1.0),
     INCH(1.0 / 12.0),
@@ -44,5 +44,10 @@ public enum LengthUnit {
      */
     public double convertFromBaseUnit(double baseValue) {
         return baseValue / this.conversionFactor;
+    }
+
+    @Override
+    public String getUnitName() {
+        return this.name();
     }
 }
