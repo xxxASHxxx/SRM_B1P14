@@ -65,5 +65,17 @@ public class QuantityMeasurementApp {
         System.out.println("LengthUnit.YARD.convertFromBaseUnit(3.0) = " + com.quantitymeasurement.model.LengthUnit.YARD.convertFromBaseUnit(3.0));
         com.quantitymeasurement.model.QuantityLengthV2 i12_v2 = new com.quantitymeasurement.model.QuantityLengthV2(12.0, com.quantitymeasurement.model.LengthUnit.INCH);
         System.out.println("add(1.0 FEET, 12.0 INCH, YARD) \u2248 " + com.quantitymeasurement.model.QuantityLengthV2.add(f1_v2, i12_v2, com.quantitymeasurement.model.LengthUnit.YARD));
+
+        // UC9 Demo
+        System.out.println("\n=== UC9: Weight Measurement Demo ===");
+        com.quantitymeasurement.model.QuantityWeight kg1 = new com.quantitymeasurement.model.QuantityWeight(1.0, com.quantitymeasurement.model.WeightUnit.KILOGRAM);
+        com.quantitymeasurement.model.QuantityWeight g1000 = new com.quantitymeasurement.model.QuantityWeight(1000.0, com.quantitymeasurement.model.WeightUnit.GRAM);
+        System.out.println("1.0 KILOGRAM == 1000.0 GRAM : " + kg1.equals(g1000));
+        
+        com.quantitymeasurement.model.QuantityWeight lb1 = new com.quantitymeasurement.model.QuantityWeight(1.0, com.quantitymeasurement.model.WeightUnit.POUND);
+        com.quantitymeasurement.model.QuantityWeight inGrams = lb1.convertTo(com.quantitymeasurement.model.WeightUnit.GRAM);
+        System.out.println("1.0 POUND in GRAMS : " + inGrams);
+
+        System.out.println("add(1.0 KILOGRAM, 1000.0 GRAM) = " + com.quantitymeasurement.model.QuantityWeight.add(kg1, g1000));
     }
 }
