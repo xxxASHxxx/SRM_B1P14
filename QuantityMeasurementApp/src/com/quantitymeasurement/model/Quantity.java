@@ -89,4 +89,27 @@ public class Quantity<U extends IMeasurable> {
         double sumInBase = q1.getValueInBaseUnit() + q2.getValueInBaseUnit();
         return new Quantity<>(targetUnit.convertFromBaseUnit(sumInBase), targetUnit);
     }
+
+    public static <U extends IMeasurable> Quantity<U> subtract(Quantity<U> q1, Quantity<U> q2) {
+        if (q1 == null || q2 == null) throw new IllegalArgumentException("Quantities must not be null.");
+        if (q1.unit.getClass() != q2.unit.getClass()) throw new IllegalArgumentException("Cannot subtract different measurement categories.");
+        double diffInBase = q1.getValueInBaseUnit() - q2.getValueInBaseUnit();
+        return new Quantity<>(q1.unit.convertFromBaseUnit(diffInBase), q1.unit);
+    }
+
+    public static <U extends IMeasurable> Quantity<U> subtract(Quantity<U> q1, Quantity<U> q2, U targetUnit) {
+        if (q1 == null || q2 == null || targetUnit == null) throw new IllegalArgumentException("Arguments must not be null.");
+        if (q1.unit.getClass() != q2.unit.getClass() || q1.unit.getClass() != targetUnit.getClass()) {
+            throw new IllegalArgumentException("Measurement categories must match.");
+        }
+        double diffInBase = q1.getValueInBaseUnit() - q2.getValueInBaseUnit();
+        return new Quantity<>(targetUnit.convertFromBaseUnit(diffInBase), targetUnit);
+    }
+
+    public static <U extends IMeasurable> double divide(Quantity<U> q1, Quantity<U> q2) {
+        if (q1 == null || q2 == null) throw new IllegalArgumentException("Quantities must not be null.");
+        if (q1.unit.getClass() != q2.unit.getClass()) throw new IllegalArgumentException("Cannot divide different measurement categories.");
+        if (q2.getValueInBaseUnit() == 0.0) throw new ArithmeticException("Division by zero.");
+        return q1.getValueInBaseUnit() / q2.getValueInBaseUnit();
+    }
 }

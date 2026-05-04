@@ -3,7 +3,6 @@ package com.quantitymeasurement.app;
 import com.quantitymeasurement.model.Quantity;
 import com.quantitymeasurement.model.LengthUnit;
 
-
 public class QuantityMeasurementApp {
 
     public static void main(String[] args) {
@@ -59,19 +58,25 @@ public class QuantityMeasurementApp {
 
         // UC8 Demo
         System.out.println("\n=== UC8: Refactored LengthUnit Demo ===");
-        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.LengthUnit> f1_v2 = new com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.LengthUnit>(1.0, com.quantitymeasurement.model.LengthUnit.FEET);
-        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.LengthUnit> f2_v2 = new com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.LengthUnit>(1.0, com.quantitymeasurement.model.LengthUnit.FEET);
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.LengthUnit> f1_v2 = new com.quantitymeasurement.model.Quantity<>(1.0, com.quantitymeasurement.model.LengthUnit.FEET);
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.LengthUnit> f2_v2 = new com.quantitymeasurement.model.Quantity<>(1.0, com.quantitymeasurement.model.LengthUnit.FEET);
         System.out.println("Quantity<LengthUnit> demo \u2014 1.0 FEET == 1.0 FEET : " + f1_v2.equals(f2_v2));
         System.out.println("LengthUnit.FEET.convertToBaseUnit(3.0) = " + com.quantitymeasurement.model.LengthUnit.FEET.convertToBaseUnit(3.0));
         System.out.println("LengthUnit.YARD.convertFromBaseUnit(3.0) = " + com.quantitymeasurement.model.LengthUnit.YARD.convertFromBaseUnit(3.0));
-        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.LengthUnit> i12_v2 = new com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.LengthUnit>(12.0, com.quantitymeasurement.model.LengthUnit.INCH);
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.LengthUnit> i12_v2 = new com.quantitymeasurement.model.Quantity<>(12.0, com.quantitymeasurement.model.LengthUnit.INCH);
         System.out.println("add(1.0 FEET, 12.0 INCH, YARD) \u2248 " + com.quantitymeasurement.model.Quantity.add(f1_v2, i12_v2, com.quantitymeasurement.model.LengthUnit.YARD));
 
         // UC9 Demo
         System.out.println("\n=== UC9: Weight Measurement Demo ===");
-        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> kg1 = new com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit>(1.0, com.quantitymeasurement.model.WeightUnit.KILOGRAM);
-        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> g1000 = new com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit>(1000.0, com.quantitymeasurement.model.WeightUnit.GRAM);
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> kg1 = new com.quantitymeasurement.model.Quantity<>(1.0, com.quantitymeasurement.model.WeightUnit.KILOGRAM);
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> g1000 = new com.quantitymeasurement.model.Quantity<>(1000.0, com.quantitymeasurement.model.WeightUnit.GRAM);
+        System.out.println("1.0 KILOGRAM == 1000.0 GRAM : " + kg1.equals(g1000));
+        
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> lb1 = new com.quantitymeasurement.model.Quantity<>(1.0, com.quantitymeasurement.model.WeightUnit.POUND);
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> inGrams = lb1.convertTo(com.quantitymeasurement.model.WeightUnit.GRAM);
+        System.out.println("1.0 POUND in GRAMS : " + inGrams);
 
+        System.out.println("add(1.0 KILOGRAM, 1000.0 GRAM) = " + com.quantitymeasurement.model.Quantity.add(kg1, g1000));
 
         // UC11 Demo
         System.out.println("\n=== UC11: Volume Measurement Demo ===");
@@ -83,5 +88,15 @@ public class QuantityMeasurementApp {
         System.out.println("1.0 GALLON in LITRES : " + gal1.convertTo(com.quantitymeasurement.model.VolumeUnit.LITRE));
 
         System.out.println("add(1.0 LITRE, 1000.0 MILLILITRE) = " + com.quantitymeasurement.model.Quantity.add(l1, ml1000));
+
+        // UC12 Demo
+        System.out.println("\n=== UC12: Subtraction and Division Demo ===");
+        Quantity<LengthUnit> feet5 = new Quantity<>(5.0, LengthUnit.FEET);
+        Quantity<LengthUnit> feet2 = new Quantity<>(2.0, LengthUnit.FEET);
+        System.out.println("subtract(5.0 FEET, 2.0 FEET) = " + Quantity.subtract(feet5, feet2));
+        
+        Quantity<com.quantitymeasurement.model.VolumeUnit> l10 = new Quantity<>(10.0, com.quantitymeasurement.model.VolumeUnit.LITRE);
+        Quantity<com.quantitymeasurement.model.VolumeUnit> l2 = new Quantity<>(2.0, com.quantitymeasurement.model.VolumeUnit.LITRE);
+        System.out.println("divide(10.0 LITRE, 2.0 LITRE) = " + Quantity.divide(l10, l2));
     }
 }
