@@ -71,12 +71,17 @@ public class QuantityMeasurementApp {
         System.out.println("\n=== UC9: Weight Measurement Demo ===");
         com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> kg1 = new com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit>(1.0, com.quantitymeasurement.model.WeightUnit.KILOGRAM);
         com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> g1000 = new com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit>(1000.0, com.quantitymeasurement.model.WeightUnit.GRAM);
-        System.out.println("1.0 KILOGRAM == 1000.0 GRAM : " + kg1.equals(g1000));
-        
-        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> lb1 = new com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit>(1.0, com.quantitymeasurement.model.WeightUnit.POUND);
-        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.WeightUnit> inGrams = lb1.convertTo(com.quantitymeasurement.model.WeightUnit.GRAM);
-        System.out.println("1.0 POUND in GRAMS : " + inGrams);
 
-        System.out.println("add(1.0 KILOGRAM, 1000.0 GRAM) = " + com.quantitymeasurement.model.Quantity.add(kg1, g1000));
+
+        // UC11 Demo
+        System.out.println("\n=== UC11: Volume Measurement Demo ===");
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.VolumeUnit> l1 = new com.quantitymeasurement.model.Quantity<>(1.0, com.quantitymeasurement.model.VolumeUnit.LITRE);
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.VolumeUnit> ml1000 = new com.quantitymeasurement.model.Quantity<>(1000.0, com.quantitymeasurement.model.VolumeUnit.MILLILITRE);
+        System.out.println("1.0 LITRE == 1000.0 MILLILITRE : " + l1.equals(ml1000));
+
+        com.quantitymeasurement.model.Quantity<com.quantitymeasurement.model.VolumeUnit> gal1 = new com.quantitymeasurement.model.Quantity<>(1.0, com.quantitymeasurement.model.VolumeUnit.GALLON);
+        System.out.println("1.0 GALLON in LITRES : " + gal1.convertTo(com.quantitymeasurement.model.VolumeUnit.LITRE));
+
+        System.out.println("add(1.0 LITRE, 1000.0 MILLILITRE) = " + com.quantitymeasurement.model.Quantity.add(l1, ml1000));
     }
 }
